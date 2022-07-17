@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Food_order.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <h2>No Records Found</h2>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaidBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order.Orderid)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Paymentid">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Paymentid">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Paymentid">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+</table>
